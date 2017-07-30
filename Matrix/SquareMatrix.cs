@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Matrix
 {
+    /// <summary>
+    /// This class implements Square matrix
+    /// </summary>
+    /// <typeparam name="T">any type</typeparam>
     public class SquareMatrix<T>
     {
         private T[,] matrix;
         private int capacity = 8;
         private static int counter = 0;
-
+        /// <summary>
+        /// Property, that contains Matrix itself
+        /// </summary>
         public virtual T[,] Matrix
         {
             get => matrix;
@@ -25,17 +26,24 @@ namespace Matrix
                 matrix = (T[,]) value.Clone();
             }
         }
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="value">two dimentional array</param>
         public SquareMatrix(T[,] value)
         {
             Matrix = value;
         }
-
+        /// <summary>
+        /// ctor
+        /// </summary>
         public SquareMatrix()
         {
             ResizeArray();
         }
-
+        /// <summary>
+        /// Event handler
+        /// </summary>
         public event EventHandler ElementChanged;
 
         protected virtual void OnElementChanged(EventArgs e)
@@ -49,7 +57,12 @@ namespace Matrix
             T[,] resized = new T[capacity * counter, capacity * counter];
             matrix = resized;
         }
-
+        /// <summary>
+        /// Change elenemt on position j i
+        /// </summary>
+        /// <param name="i">Number of string</param>
+        /// <param name="j">Number of column</param>
+        /// <param name="value">On which to change</param>
         public virtual void ChangeElement(int i, int j, T value)
         {
             while (Matrix.GetLength(0) > i || Matrix.GetLength(0) > j)
@@ -57,7 +70,12 @@ namespace Matrix
             Matrix[i, j] = value;
             OnElementChanged(EventArgs.Empty);
         }
-
+        /// <summary>
+        /// Operator plus
+        /// </summary>
+        /// <param name="lhs">Left member to add</param>
+        /// <param name="rhs">Right member to add</param>
+        /// <returns>Sun of two members</returns>
         public static SquareMatrix<T> operator +(SquareMatrix<T> lhs, SquareMatrix<T> rhs)
         {
             SquareMatrix<T> result = new SquareMatrix<T>();
@@ -70,7 +88,12 @@ namespace Matrix
             }
             return result;
         }
-
+        /// <summary>
+        /// Overrided equality operator
+        /// </summary>
+        /// <param name="lhs">Left member</param>
+        /// <param name="rhs">Right member</param>
+        /// <returns>is equal</returns>
         public static bool operator ==(SquareMatrix<T> lhs, SquareMatrix<T> rhs)
         {
             if (lhs.GetLength() != rhs.GetLength())
@@ -86,12 +109,24 @@ namespace Matrix
             }
             return true;
         }
-
+        /// <summary>
+        /// Overrided unequal operator
+        /// </summary>
+        /// <param name="lhs">Left member</param>
+        /// <param name="rhs">Right member</param>
+        /// <returns>is not equal</returns>
         public static bool operator !=(SquareMatrix<T> lhs, SquareMatrix<T> rhs) => !(lhs == rhs);
         
 
-
+        /// <summary>
+        /// Get number of strings or columns
+        /// </summary>
+        /// <returns>Number of strings or columns</returns>
         public int GetLength() => Matrix.GetLength(0);
+        /// <summary>
+        /// Iimplements transposing
+        /// </summary>
+        /// <returns>Transopsed matrix</returns>
         public SquareMatrix<T> Transpose()
         {
             T t;

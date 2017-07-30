@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibonacciYield", "Fibonacci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix", "Matrix\Matrix.csproj", "{7DBF4B75-D02E-4B17-A885-7A0F3673D937}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearchTree", "BinarySearchTree\BinarySearchTree.csproj", "{F8D0FDC9-B53C-4314-A5AA-BB4F8CD753FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7DBF4B75-D02E-4B17-A885-7A0F3673D937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DBF4B75-D02E-4B17-A885-7A0F3673D937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DBF4B75-D02E-4B17-A885-7A0F3673D937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8D0FDC9-B53C-4314-A5AA-BB4F8CD753FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D0FDC9-B53C-4314-A5AA-BB4F8CD753FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8D0FDC9-B53C-4314-A5AA-BB4F8CD753FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D0FDC9-B53C-4314-A5AA-BB4F8CD753FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

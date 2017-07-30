@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Matrix
 {
+    /// <summary>
+    /// This class implements Symmetric matrix
+    /// </summary>
+    /// <typeparam name="T">any type</typeparam>
     class SymmetricMatrix<T> : SquareMatrix<T>
     {
         private T[,] matrix;
+        /// <summary>
+        /// Property, that contains Matrix itself
+        /// </summary>
         public override T[,] Matrix
         {
             get => matrix;
@@ -23,12 +26,20 @@ namespace Matrix
                 matrix = (T[,])value.Clone();
             }
         }
+        /// <summary>
+        /// Event handler
+        /// </summary>
         public event EventHandler ElementChanged;
         protected override void OnElementChanged(EventArgs e)
         {
             ElementChanged?.Invoke(this, e);
         }
-
+        /// <summary>
+        /// Change elenemt on position j i
+        /// </summary>
+        /// <param name="i">Number of string</param>
+        /// <param name="j">Number of column</param>
+        /// <param name="value">On which to change</param>
         public override void ChangeElement(int i, int j, T value)
         {
             while (Matrix.GetLength(0) > i || Matrix.GetLength(0) > j)
@@ -39,29 +50,11 @@ namespace Matrix
             OnElementChanged(EventArgs.Empty);
         }
 
-        public static SymmetricMatrix<T> operator +(SymmetricMatrix<T> lhs, SymmetricMatrix<T> rhs)
-            => lhs + rhs;
         private bool SymmetricCheck()
         {
             if (this == this.Transpose())
                 return true;
             return false;
-        }
-
-        public SquareMatrix<T> Transpose()
-        {
-            T t;
-            SquareMatrix<T> mtx = new SquareMatrix<T>(Matrix);
-            for (int i = 0; i < GetLength(); i++)
-            {
-                for (int j = i; j < GetLength(); j++)
-                {
-                    t = mtx.Matrix[i, j];
-                    mtx.Matrix[i, j] = mtx.Matrix[j, i];
-                    mtx.Matrix[j, i] = t;
-                }
-            }
-            return mtx;
         }
     }
 }

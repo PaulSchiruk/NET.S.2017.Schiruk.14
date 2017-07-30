@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Matrix
 {
+    /// <summary>
+    /// This class implements Diagonal matrix
+    /// </summary>
+    /// <typeparam name="T">any type</typeparam>
     class DiagonalMatrix<T> : SquareMatrix<T> //where T: IEquatable<T>
     {
         private T[,] matrix;
+        /// <summary>
+        /// Property, that contains Matrix itself
+        /// </summary>
         public override T[,] Matrix
         {
             get => matrix;
@@ -23,12 +26,20 @@ namespace Matrix
                 matrix = (T[,])value.Clone();
             }
         }
+        /// <summary>
+        /// Event handler
+        /// </summary>
         public event EventHandler ElementChanged;
         protected override void OnElementChanged(EventArgs e)
         {
             ElementChanged?.Invoke(this, e);
         }
-
+        /// <summary>
+        /// Change elenemt on position j i
+        /// </summary>
+        /// <param name="i">Number of string</param>
+        /// <param name="j">Number of column</param>
+        /// <param name="value">On whick to change</param>
         public override void ChangeElement(int i, int j, T value)
         {
             while (Matrix.GetLength(0) > i || Matrix.GetLength(0) > j)
@@ -38,9 +49,7 @@ namespace Matrix
             Matrix[i, j] = value;
             OnElementChanged(EventArgs.Empty);
         }
-
-        public static DiagonalMatrix<T> operator +(DiagonalMatrix<T> lhs, DiagonalMatrix<T> rhs)
-            => lhs + rhs;
+        
         private bool DiagCheck()
         {
             for (int i = 0; i < GetLength(); i++)

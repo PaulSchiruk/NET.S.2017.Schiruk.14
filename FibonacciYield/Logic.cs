@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FibonacciYield
-{
+{/// <summary>
+/// This class implement Fibonacci numbers
+/// </summary>
     public class Logic
     {
         /// <summary>
